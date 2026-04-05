@@ -1,0 +1,24 @@
+<div class="product-card" [routerLink]="['/products', product._id]">
+  <div class="card-image">
+    <img [src]="displayImage" [alt]="product.name" loading="lazy" />
+    <span class="discount-badge" *ngIf="discountPercent > 0">-{{ discountPercent }}%</span>
+    <span class="featured-badge" *ngIf="product.isFeatured">Featured</span>
+  </div>
+  <div class="card-body">
+    <p class="card-category">{{ product.category }}</p>
+    <h3 class="card-title">{{ product.name }}</h3>
+    <div class="card-rating">
+      <span class="stars">⭐ {{ product.ratings.average | number:'1.1-1' }}</span>
+      <span class="count">({{ product.ratings.count }})</span>
+    </div>
+    <div class="card-price">
+      <span class="current-price">₹{{ product.price | number }}</span>
+      <span class="original-price" *ngIf="product.originalPrice && product.originalPrice > product.price">
+        ₹{{ product.originalPrice | number }}
+      </span>
+    </div>
+    <p class="stock-status" [class.out-of-stock]="product.stock === 0">
+      {{ product.stock > 0 ? 'In Stock' : 'Out of Stock' }}
+    </p>
+  </div>
+</div>

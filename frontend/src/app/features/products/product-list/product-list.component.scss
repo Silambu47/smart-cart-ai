@@ -1,0 +1,263 @@
+.product-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.page-header {
+  margin-bottom: 2rem;
+
+  h1 {
+    color: #fff;
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    color: #888;
+    font-size: 0.9rem;
+  }
+}
+
+.page-content {
+  display: flex;
+  gap: 2rem;
+}
+
+.filters-sidebar {
+  width: 250px;
+  flex-shrink: 0;
+  background: #16213e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+
+  .filters-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+
+    h3 {
+      color: #fff;
+      font-size: 1.1rem;
+    }
+
+    .close-filters {
+      display: none;
+      background: none;
+      border: none;
+      color: #888;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+}
+
+.filter-group {
+  margin-bottom: 1.25rem;
+
+  label {
+    display: block;
+    color: #ccc;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+  }
+
+  select,
+  input {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 1px solid #2a2a4a;
+    border-radius: 6px;
+    background: #1a1a2e;
+    color: #fff;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #e94560;
+    }
+  }
+}
+
+.filter-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn-apply {
+  padding: 0.6rem 1rem;
+  background: #e94560;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:hover {
+    background: #c73652;
+  }
+}
+
+.btn-clear {
+  padding: 0.6rem 1rem;
+  background: transparent;
+  color: #888;
+  border: 1px solid #2a2a4a;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #e94560;
+    color: #e94560;
+  }
+}
+
+.products-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.toolbar {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  align-items: center;
+
+  .btn-toggle-filters {
+    display: none;
+    padding: 0.6rem 1rem;
+    background: #16213e;
+    color: #ccc;
+    border: 1px solid #2a2a4a;
+    border-radius: 6px;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .search-bar {
+    flex: 1;
+    display: flex;
+    border-radius: 8px;
+    overflow: hidden;
+
+    input {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: none;
+      background: #16213e;
+      color: #fff;
+      font-size: 0.9rem;
+
+      &::placeholder {
+        color: #555;
+      }
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    button {
+      padding: 0.6rem 1rem;
+      background: #e94560;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+  }
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+.no-results {
+  text-align: center;
+  padding: 4rem 1rem;
+
+  h3 {
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    color: #888;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+
+  button {
+    padding: 0.5rem 0.85rem;
+    border: 1px solid #2a2a4a;
+    background: #16213e;
+    color: #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+
+    &:hover:not(:disabled) {
+      border-color: #e94560;
+      color: #e94560;
+    }
+
+    &.active {
+      background: #e94560;
+      border-color: #e94560;
+      color: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .filters-sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 2000;
+    border-radius: 0;
+    overflow-y: auto;
+
+    &.open {
+      display: block;
+    }
+
+    .close-filters {
+      display: block !important;
+    }
+  }
+
+  .toolbar .btn-toggle-filters {
+    display: block;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,57 @@
+<div class="admin-orders">
+  <h1>Manage Orders</h1>
+
+  <div class="toolbar">
+    <select [(ngModel)]="statusFilter" (change)="loadOrders()">
+      <option value="">All Statuses</option>
+      <option *ngFor="let s of statuses" [value]="s">{{ s | titlecase }}</option>
+    </select>
+  </div>
+
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+  <div class="orders-table" *ngIf="!loading">
+    <table>
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Customer</th>
+          <th>Items</th>
+          <th>Total</th>
+          <th>Status</th>
+          <th>Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td class="order-id">#{{ order._id.slice(-8).toUpperCase() }}</td>
+          <td>{{ getUserName(order.user) }}</td>
+          <td>{{ order.items.length }} items</td>
+          <td class="amount">₹{{ order.totalAmount | number }}</td>
+          <td>
+            <span class="status-badge" [style.color]="getStatusColor(order.status)">
+              {{ order.status | titlecase }}
+            </span>
+          </td>
+          <td class="date">{{ order.createdAt | date:'shortDate' }}</td>
+          <td>
+            <select
+              [ngModel]="order.status"
+              (ngModelChange)="updateStatus(order, $event)"
+              class="status-select"
+            >
+              <option *ngFor="let s of statuses" [value]="s">{{ s | titlecase }}</option>
+            </select>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination" *ngIf="pagination && pagination.totalPages > 1">
+    <button [disabled]="!pagination.hasPrevPage" (click)="loadOrders(pagination.page - 1)">‹ Prev</button>
+    <span>Page {{ pagination.page }} of {{ pagination.totalPages }}</span>
+    <button [disabled]="!pagination.hasNextPage" (click)="loadOrders(pagination.page + 1)">Next ›</button>
+  </div>
+</div>

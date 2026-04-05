@@ -1,0 +1,117 @@
+.admin-orders {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  h1 {
+    color: #fff;
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.toolbar {
+  margin-bottom: 1.5rem;
+
+  select {
+    padding: 0.6rem 1rem;
+    border: 1px solid #2a2a4a;
+    border-radius: 6px;
+    background: #16213e;
+    color: #fff;
+    font-size: 0.9rem;
+
+    &:focus {
+      outline: none;
+      border-color: #e94560;
+    }
+  }
+}
+
+.orders-table {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #16213e;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  th {
+    text-align: left;
+    padding: 1rem;
+    color: #888;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #2a2a4a;
+  }
+
+  td {
+    padding: 0.85rem 1rem;
+    color: #ccc;
+    border-bottom: 1px solid #1a1a2e;
+    font-size: 0.9rem;
+  }
+
+  .order-id {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .amount {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .date {
+    color: #888;
+  }
+
+  .status-badge {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+  }
+
+  .status-select {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #2a2a4a;
+    border-radius: 4px;
+    background: #1a1a2e;
+    color: #ccc;
+    font-size: 0.8rem;
+
+    &:focus {
+      outline: none;
+      border-color: #e94560;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  span {
+    color: #888;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #2a2a4a;
+    background: #16213e;
+    color: #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}

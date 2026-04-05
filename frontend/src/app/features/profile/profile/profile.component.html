@@ -1,0 +1,99 @@
+<div class="profile-page">
+  <h1>My Account</h1>
+
+  <div class="tabs">
+    <button [class.active]="activeTab === 'profile'" (click)="activeTab = 'profile'">Profile</button>
+    <button [class.active]="activeTab === 'orders'" (click)="activeTab = 'orders'">Order History</button>
+  </div>
+
+  <!-- Profile Tab -->
+  <div class="tab-content" *ngIf="activeTab === 'profile'">
+    <div class="profile-card">
+      <div class="success-message" *ngIf="successMessage">{{ successMessage }}</div>
+
+      <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input formControlName="name" placeholder="Your name" />
+        </div>
+
+        <div class="form-group">
+          <label>Email</label>
+          <input [value]="user?.email" disabled />
+        </div>
+
+        <div class="form-group">
+          <label>Phone</label>
+          <input formControlName="phone" placeholder="Phone number" />
+        </div>
+
+        <h3>Address</h3>
+
+        <div class="form-group">
+          <label>Street</label>
+          <input formControlName="street" placeholder="Street address" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>City</label>
+            <input formControlName="city" placeholder="City" />
+          </div>
+          <div class="form-group">
+            <label>State</label>
+            <input formControlName="state" placeholder="State" />
+          </div>
+          <div class="form-group">
+            <label>Zip Code</label>
+            <input formControlName="zipCode" placeholder="Zip Code" />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-save" [disabled]="profileForm.invalid || saving">
+          {{ saving ? 'Saving...' : 'Save Changes' }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Orders Tab -->
+  <div class="tab-content" *ngIf="activeTab === 'orders'">
+    <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+    <div *ngIf="!loading && orders.length === 0" class="no-orders">
+      <h3>No orders yet</h3>
+      <p>Start shopping to see your order history here.</p>
+      <a routerLink="/products" class="btn-shop">Browse Products</a>
+    </div>
+
+    <div class="orders-list" *ngIf="!loading && orders.length > 0">
+      <div class="order-card" *ngFor="let order of orders">
+        <div class="order-header">
+          <div>
+            <span class="order-id">Order #{{ order._id.slice(-8).toUpperCase() }}</span>
+            <span class="order-date">{{ order.createdAt | date:'mediumDate' }}</span>
+          </div>
+          <span class="order-status" [style.color]="getStatusColor(order.status)">
+            {{ order.status | titlecase }}
+          </span>
+        </div>
+        <div class="order-items">
+          <div class="order-item" *ngFor="let item of order.items">
+            <span>{{ item.name }} × {{ item.quantity }}</span>
+            <span>₹{{ item.price * item.quantity | number }}</span>
+          </div>
+        </div>
+        <div class="order-footer">
+          <span class="payment">{{ order.paymentMethod | uppercase }}</span>
+          <span class="order-total">Total: ₹{{ order.totalAmount | number }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="pagination" *ngIf="pagination && pagination.totalPages > 1">
+      <button [disabled]="!pagination.hasPrevPage" (click)="loadOrders(pagination.page - 1)">‹ Prev</button>
+      <span>Page {{ pagination.page }} of {{ pagination.totalPages }}</span>
+      <button [disabled]="!pagination.hasNextPage" (click)="loadOrders(pagination.page + 1)">Next ›</button>
+    </div>
+  </div>
+</div>

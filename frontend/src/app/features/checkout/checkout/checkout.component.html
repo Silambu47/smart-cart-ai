@@ -1,0 +1,72 @@
+<div class="checkout-page" *ngIf="cart && cart.items.length > 0">
+  <h1>Checkout</h1>
+
+  <div class="error-message" *ngIf="error">{{ error }}</div>
+
+  <div class="checkout-content">
+    <form [formGroup]="checkoutForm" (ngSubmit)="placeOrder()" class="checkout-form">
+      <h2>Shipping Address</h2>
+
+      <div class="form-group">
+        <label>Street Address</label>
+        <input formControlName="street" placeholder="123 Main Street" />
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>City</label>
+          <input formControlName="city" placeholder="Mumbai" />
+        </div>
+        <div class="form-group">
+          <label>State</label>
+          <input formControlName="state" placeholder="Maharashtra" />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>Zip Code</label>
+          <input formControlName="zipCode" placeholder="400001" />
+        </div>
+        <div class="form-group">
+          <label>Country</label>
+          <input formControlName="country" />
+        </div>
+      </div>
+
+      <h2>Payment Method</h2>
+      <div class="payment-options">
+        <label class="radio-option" [class.selected]="checkoutForm.get('paymentMethod')?.value === 'cod'">
+          <input type="radio" formControlName="paymentMethod" value="cod" />
+          <span>💵 Cash on Delivery</span>
+        </label>
+        <label class="radio-option" [class.selected]="checkoutForm.get('paymentMethod')?.value === 'card'">
+          <input type="radio" formControlName="paymentMethod" value="card" />
+          <span>💳 Credit/Debit Card</span>
+        </label>
+        <label class="radio-option" [class.selected]="checkoutForm.get('paymentMethod')?.value === 'upi'">
+          <input type="radio" formControlName="paymentMethod" value="upi" />
+          <span>📱 UPI</span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-place-order" [disabled]="checkoutForm.invalid || loading">
+        {{ loading ? 'Placing Order...' : 'Place Order' }}
+      </button>
+    </form>
+
+    <div class="order-summary">
+      <h2>Order Summary</h2>
+      <div class="summary-items">
+        <div class="summary-item" *ngFor="let item of cart.items">
+          <span class="item-name">{{ item.product.name }} × {{ item.quantity }}</span>
+          <span class="item-price">₹{{ item.price * item.quantity | number }}</span>
+        </div>
+      </div>
+      <div class="summary-total">
+        <span>Total</span>
+        <span>₹{{ cart.totalPrice | number }}</span>
+      </div>
+    </div>
+  </div>
+</div>

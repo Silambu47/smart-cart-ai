@@ -1,0 +1,52 @@
+<nav class="navbar">
+  <div class="navbar-container">
+    <a class="navbar-brand" routerLink="/">
+      <span class="brand-icon">🛒</span>
+      <span class="brand-text">Smart E-Cart</span>
+    </a>
+
+    <div class="navbar-search">
+      <input
+        type="text"
+        placeholder="Search products..."
+        #searchInput
+        (keyup.enter)="router.navigate(['/products'], { queryParams: { search: searchInput.value } })"
+      />
+      <button (click)="router.navigate(['/products'], { queryParams: { search: searchInput.value } })">
+        🔍
+      </button>
+    </div>
+
+    <button class="menu-toggle" (click)="toggleMenu()">
+      ☰
+    </button>
+
+    <div class="navbar-links" [class.open]="isMenuOpen">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="isMenuOpen = false">Home</a>
+      <a routerLink="/products" routerLinkActive="active" (click)="isMenuOpen = false">Products</a>
+
+      <ng-container *ngIf="authService.isLoggedIn; else authLinks">
+        <a routerLink="/cart" routerLinkActive="active" class="cart-link" (click)="isMenuOpen = false">
+          🛒
+          <span class="cart-badge" *ngIf="cartService.cartItemCount > 0">
+            {{ cartService.cartItemCount }}
+          </span>
+        </a>
+        <div class="user-menu">
+          <span class="user-name">{{ currentUser?.name }}</span>
+          <div class="dropdown">
+            <a routerLink="/profile" (click)="isMenuOpen = false">My Profile</a>
+            <a routerLink="/profile" fragment="orders" (click)="isMenuOpen = false">My Orders</a>
+            <a *ngIf="authService.isAdmin" routerLink="/admin" (click)="isMenuOpen = false">Admin Dashboard</a>
+            <a (click)="logout()" class="logout-link">Logout</a>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-template #authLinks>
+        <a routerLink="/auth/login" routerLinkActive="active" (click)="isMenuOpen = false">Login</a>
+        <a routerLink="/auth/register" routerLinkActive="active" class="btn-register" (click)="isMenuOpen = false">Register</a>
+      </ng-template>
+    </div>
+  </div>
+</nav>

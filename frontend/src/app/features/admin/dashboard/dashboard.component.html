@@ -1,0 +1,79 @@
+<div class="admin-dashboard">
+  <h1>Admin Dashboard</h1>
+
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+  <div *ngIf="!loading && stats">
+    <!-- Stats Cards -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-icon">📦</span>
+        <div>
+          <h3>{{ stats.totalOrders }}</h3>
+          <p>Total Orders</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">💰</span>
+        <div>
+          <h3>₹{{ stats.totalRevenue | number }}</h3>
+          <p>Total Revenue</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">🛍️</span>
+        <div>
+          <h3>{{ stats.totalProducts }}</h3>
+          <p>Products</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-icon">👥</span>
+        <div>
+          <h3>{{ stats.totalUsers }}</h3>
+          <p>Users</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Status -->
+    <div class="section-grid">
+      <div class="section-card">
+        <h2>Orders by Status</h2>
+        <div class="status-list">
+          <div class="status-item" *ngFor="let s of stats.ordersByStatus">
+            <span class="status-dot" [style.background]="getStatusColor(s.status)"></span>
+            <span class="status-name">{{ s.status | titlecase }}</span>
+            <span class="status-count">{{ s.count }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-card">
+        <h2>Recent Orders</h2>
+        <div class="recent-orders">
+          <div class="recent-order" *ngFor="let order of stats.recentOrders">
+            <div class="order-info">
+              <span class="order-id">#{{ order._id.slice(-6).toUpperCase() }}</span>
+              <span class="order-user" *ngIf="$any(order.user)?.name">{{ $any(order.user).name }}</span>
+            </div>
+            <div class="order-meta">
+              <span class="order-amount">₹{{ order.totalAmount | number }}</span>
+              <span class="order-status" [style.color]="getStatusColor(order.status)">{{ order.status }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="quick-links">
+      <a routerLink="/admin/products" class="quick-link">
+        <span>🛍️</span> Manage Products
+      </a>
+      <a routerLink="/admin/orders" class="quick-link">
+        <span>📦</span> Manage Orders
+      </a>
+    </div>
+  </div>
+</div>

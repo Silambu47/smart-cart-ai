@@ -1,0 +1,178 @@
+.admin-dashboard {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+
+  h1 {
+    color: #fff;
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: #16213e;
+  border-radius: 12px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+
+  .stat-icon {
+    font-size: 2rem;
+  }
+
+  h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  p {
+    color: #888;
+    font-size: 0.85rem;
+    margin: 0;
+  }
+}
+
+.section-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
+}
+
+.section-card {
+  background: #16213e;
+  border-radius: 12px;
+  padding: 1.5rem;
+
+  h2 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-bottom: 1.25rem;
+  }
+}
+
+.status-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+
+  .status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .status-name {
+    flex: 1;
+    color: #ccc;
+    font-size: 0.95rem;
+  }
+
+  .status-count {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+}
+
+.recent-orders {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.recent-order {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #2a2a4a;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .order-info {
+    .order-id {
+      color: #fff;
+      font-weight: 600;
+      margin-right: 0.75rem;
+    }
+
+    .order-user {
+      color: #888;
+      font-size: 0.85rem;
+    }
+  }
+
+  .order-meta {
+    text-align: right;
+
+    .order-amount {
+      color: #fff;
+      font-weight: 600;
+      display: block;
+    }
+
+    .order-status {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+  }
+}
+
+.quick-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.quick-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #16213e;
+  padding: 1.25rem;
+  border-radius: 12px;
+  color: #ccc;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+  border: 2px solid transparent;
+
+  span {
+    font-size: 1.5rem;
+  }
+
+  &:hover {
+    border-color: #e94560;
+    color: #e94560;
+  }
+}
+
+@media (max-width: 768px) {
+  .section-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-links {
+    flex-direction: column;
+  }
+}

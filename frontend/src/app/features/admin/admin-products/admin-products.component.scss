@@ -1,0 +1,267 @@
+.admin-products {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    color: #fff;
+    font-size: 1.75rem;
+  }
+
+  .btn-add {
+    background: #e94560;
+    color: #fff;
+    padding: 0.7rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background: #c73652;
+    }
+  }
+}
+
+.form-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 3000;
+  padding: 1rem;
+}
+
+.form-card {
+  background: #16213e;
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+
+  h2 {
+    color: #fff;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.form-group {
+  margin-bottom: 1rem;
+  flex: 1;
+
+  label {
+    display: block;
+    color: #ccc;
+    font-size: 0.85rem;
+    margin-bottom: 0.4rem;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    padding: 0.6rem 0.75rem;
+    border: 2px solid #2a2a4a;
+    border-radius: 6px;
+    background: #1a1a2e;
+    color: #fff;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+
+    &:focus {
+      outline: none;
+      border-color: #e94560;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  &.checkbox label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+
+    input[type='checkbox'] {
+      width: auto;
+      accent-color: #e94560;
+    }
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1.5rem;
+}
+
+.btn-cancel {
+  padding: 0.7rem 1.5rem;
+  background: transparent;
+  color: #888;
+  border: 1px solid #2a2a4a;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #e94560;
+    color: #e94560;
+  }
+}
+
+.btn-save {
+  padding: 0.7rem 1.5rem;
+  background: #e94560;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.products-table {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #16213e;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+
+  th {
+    text-align: left;
+    padding: 1rem;
+    color: #888;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #2a2a4a;
+  }
+
+  td {
+    padding: 0.85rem 1rem;
+    color: #ccc;
+    border-bottom: 1px solid #1a1a2e;
+    font-size: 0.9rem;
+  }
+
+  .product-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      object-fit: cover;
+    }
+
+    span {
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+
+  .low-stock {
+    color: #e94560;
+    font-weight: 600;
+  }
+
+  .actions-cell {
+    display: flex;
+    gap: 0.5rem;
+  }
+}
+
+.btn-edit {
+  padding: 0.35rem 0.75rem;
+  background: #0f3460;
+  color: #2196f3;
+  border: 1px solid #2196f3;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+
+  &:hover {
+    background: #2196f3;
+    color: #fff;
+  }
+}
+
+.btn-delete {
+  padding: 0.35rem 0.75rem;
+  background: transparent;
+  color: #e94560;
+  border: 1px solid #e94560;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+
+  &:hover {
+    background: #e94560;
+    color: #fff;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+
+  span {
+    color: #888;
+  }
+
+  button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #2a2a4a;
+    background: #16213e;
+    color: #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}

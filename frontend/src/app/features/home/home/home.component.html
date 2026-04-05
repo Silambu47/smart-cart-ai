@@ -1,0 +1,86 @@
+<div class="home">
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Smart Shopping,<br /><span>Smarter Prices</span></h1>
+      <p>Discover the best deals across thousands of products. From electronics to fashion, we've got it all.</p>
+      <a routerLink="/products" class="btn-primary">Shop Now →</a>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="section" *ngIf="categories.length">
+    <div class="section-container">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="categories-grid">
+        <a
+          *ngFor="let category of categories"
+          class="category-card"
+          [routerLink]="['/products']"
+          [queryParams]="{ category: category.name }"
+        >
+          <span class="category-name">{{ category.name }}</span>
+          <span class="category-count">{{ category.count }} products</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="section">
+    <div class="section-container">
+      <h2 class="section-title">Featured Products</h2>
+      <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+      <div class="products-grid" *ngIf="!loading">
+        <app-product-card
+          *ngFor="let product of featuredProducts"
+          [product]="product"
+        ></app-product-card>
+      </div>
+      <div class="section-footer" *ngIf="!loading">
+        <a routerLink="/products" class="btn-outline">View All Products →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recently Viewed -->
+  <section class="section" *ngIf="recentlyViewed.length">
+    <div class="section-container">
+      <h2 class="section-title">Recently Viewed</h2>
+      <div class="products-grid">
+        <app-product-card
+          *ngFor="let product of recentlyViewed"
+          [product]="product"
+        ></app-product-card>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Banner -->
+  <section class="features-banner">
+    <div class="section-container">
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="feature-icon">🚚</span>
+          <h3>Free Shipping</h3>
+          <p>On orders above ₹499</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🔄</span>
+          <h3>Easy Returns</h3>
+          <p>7-day return policy</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🔒</span>
+          <h3>Secure Payment</h3>
+          <p>100% secure checkout</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">💬</span>
+          <h3>24/7 Support</h3>
+          <p>We're here to help</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

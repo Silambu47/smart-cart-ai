@@ -1,0 +1,109 @@
+<div class="admin-products">
+  <div class="page-header">
+    <h1>Manage Products</h1>
+    <button class="btn-add" (click)="openAddForm()">+ Add Product</button>
+  </div>
+
+  <!-- Product Form Modal -->
+  <div class="form-overlay" *ngIf="showForm" (click)="cancelForm()">
+    <div class="form-card" (click)="$event.stopPropagation()">
+      <h2>{{ editing ? 'Edit Product' : 'Add Product' }}</h2>
+      <form [formGroup]="productForm" (ngSubmit)="saveProduct()">
+        <div class="form-group">
+          <label>Product Name</label>
+          <input formControlName="name" />
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea formControlName="description" rows="3"></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Price (₹)</label>
+            <input type="number" formControlName="price" />
+          </div>
+          <div class="form-group">
+            <label>Original Price (₹)</label>
+            <input type="number" formControlName="originalPrice" />
+          </div>
+          <div class="form-group">
+            <label>Stock</label>
+            <input type="number" formControlName="stock" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Category</label>
+            <select formControlName="category">
+              <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Brand</label>
+            <input formControlName="brand" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Images (comma-separated URLs)</label>
+          <input formControlName="images" placeholder="https://..." />
+        </div>
+        <div class="form-group">
+          <label>Tags (comma-separated)</label>
+          <input formControlName="tags" placeholder="tag1, tag2" />
+        </div>
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" formControlName="isFeatured" />
+            Featured Product
+          </label>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="btn-cancel" (click)="cancelForm()">Cancel</button>
+          <button type="submit" class="btn-save" [disabled]="productForm.invalid || saving">
+            {{ saving ? 'Saving...' : 'Save' }}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Product Table -->
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+
+  <div class="products-table" *ngIf="!loading">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Stock</th>
+          <th>Featured</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td class="product-cell">
+            <img [src]="product.images?.[0] || 'https://placehold.co/40x40?text=P'" [alt]="product.name" />
+            <span>{{ product.name }}</span>
+          </td>
+          <td>{{ product.category }}</td>
+          <td>₹{{ product.price | number }}</td>
+          <td [class.low-stock]="product.stock < 10">{{ product.stock }}</td>
+          <td>{{ product.isFeatured ? '⭐' : '—' }}</td>
+          <td class="actions-cell">
+            <button class="btn-edit" (click)="openEditForm(product)">Edit</button>
+            <button class="btn-delete" (click)="deleteProduct(product)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination" *ngIf="pagination && pagination.totalPages > 1">
+    <button [disabled]="!pagination.hasPrevPage" (click)="loadProducts(pagination.page - 1)">‹ Prev</button>
+    <span>Page {{ pagination.page }} of {{ pagination.totalPages }}</span>
+    <button [disabled]="!pagination.hasNextPage" (click)="loadProducts(pagination.page + 1)">Next ›</button>
+  </div>
+</div>

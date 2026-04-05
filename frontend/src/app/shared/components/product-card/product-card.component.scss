@@ -1,0 +1,129 @@
+.product-card {
+  background: #16213e;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(233, 69, 96, 0.15);
+  }
+}
+
+.card-image {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  background: #0f3460;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.discount-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #e94560;
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.featured-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #0f3460;
+  color: #e94560;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid #e94560;
+}
+
+.card-body {
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.card-category {
+  color: #e94560;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.card-title {
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+
+  .stars {
+    color: #ffd700;
+  }
+
+  .count {
+    color: #888;
+  }
+}
+
+.card-price {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: auto;
+
+  .current-price {
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+  }
+
+  .original-price {
+    color: #888;
+    text-decoration: line-through;
+    font-size: 0.85rem;
+  }
+}
+
+.stock-status {
+  font-size: 0.75rem;
+  color: #4caf50;
+  font-weight: 600;
+
+  &.out-of-stock {
+    color: #e94560;
+  }
+}

@@ -1,0 +1,270 @@
+.product-detail {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 4rem;
+}
+
+.detail-images {
+  .main-image {
+    background: #16213e;
+    border-radius: 16px;
+    overflow: hidden;
+    aspect-ratio: 1;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .thumbnail-list {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 8px;
+      object-fit: cover;
+      cursor: pointer;
+      border: 2px solid transparent;
+      opacity: 0.6;
+      transition: all 0.2s;
+
+      &:hover,
+      &.active {
+        opacity: 1;
+        border-color: #e94560;
+      }
+    }
+  }
+}
+
+.detail-info {
+  .category-badge {
+    display: inline-block;
+    background: rgba(233, 69, 96, 0.15);
+    color: #e94560;
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    color: #fff;
+    font-size: 1.75rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .rating {
+    color: #ffd700;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+
+    .rating-count {
+      color: #888;
+      font-size: 0.9rem;
+    }
+  }
+
+  .price-section {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    .current-price {
+      color: #fff;
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .original-price {
+      color: #888;
+      text-decoration: line-through;
+      font-size: 1.1rem;
+    }
+
+    .discount {
+      background: #e94560;
+      color: #fff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+  }
+
+  .stock {
+    color: #4caf50;
+    font-weight: 600;
+    margin-bottom: 1rem;
+
+    &.out {
+      color: #e94560;
+    }
+  }
+
+  .description {
+    color: #aaa;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .brand {
+    color: #ccc;
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+
+    strong {
+      color: #fff;
+    }
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+
+    .tag {
+      background: #1a1a2e;
+      color: #888;
+      padding: 0.3rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.cart-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.quantity-selector {
+  display: flex;
+  align-items: center;
+  background: #1a1a2e;
+  border-radius: 8px;
+  overflow: hidden;
+
+  button {
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #16213e;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      background: #e94560;
+    }
+
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+
+  span {
+    width: 50px;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+}
+
+.btn-add-cart {
+  flex: 1;
+  padding: 0.85rem 2rem;
+  background: #e94560;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover:not(:disabled) {
+    background: #c73652;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+.login-prompt {
+  color: #888;
+  margin-top: 1rem;
+
+  a {
+    color: #e94560;
+    text-decoration: none;
+    font-weight: 600;
+  }
+}
+
+.success-message {
+  margin-top: 1rem;
+  color: #4caf50;
+  font-weight: 600;
+  background: rgba(76, 175, 80, 0.1);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.recommended {
+  margin-top: 3rem;
+
+  h2 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .detail-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .detail-info h1 {
+    font-size: 1.35rem;
+  }
+
+  .cart-actions {
+    flex-direction: column;
+  }
+
+  .btn-add-cart {
+    width: 100%;
+  }
+}
